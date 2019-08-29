@@ -3,7 +3,6 @@ import time
 
 import requests
 
-uid = 1473830  # Test Uid
 file = open('data.csv', 'a', newline='')
 writer = csv.writer(file)
 error_log = open('Error.csv', 'a', newline='')
@@ -39,5 +38,19 @@ def log_fans(uid):
                 write_text = ['-------Fuck you Active 8-------']
                 writer.writerow(write_text)
         else:
-            write_data = [a[0], a[1]]
+            write_data = [a[0], 'get_fans', a[1]]
             log_error(write_data)
+
+
+def get_name(uid):
+    url = 'http://api.bilibili.com/x/space/acc/info'
+    param = {'mid': uid, 'jsonp': 'jsonp'}
+    try:
+        body = requests.get(url=url, params=param)
+        body = body.json()
+        print('test')
+        print(body['data']['name'])
+        return body['data']['name']
+    except Exception as e:
+        error_info = [time.asctime(time.localtime(time.time())), 'get_name', e]
+        log_error(error_info)

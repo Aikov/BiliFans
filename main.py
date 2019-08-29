@@ -3,6 +3,7 @@ import tkinter as tk
 
 from tools import *
 
+uid_test = 1473830  # Test Uid
 window = tk.Tk()
 window.title('AIChannel Fans')
 window.geometry('500x200')
@@ -18,7 +19,7 @@ on_hit_2 = False
 
 
 def hit_me_1():
-    a = get_fans(1473830)
+    a = get_fans(uid_test)
     if a[2]:
         string.set(a[1])
 
@@ -38,5 +39,5 @@ b1 = tk.Button(window, text='Update', font=('Arial', 18), width=10, height=1, co
 b1.place(x=80, y=100)
 b2 = tk.Button(window, text='Exit', font=('Arial', 18), width=10, height=1, command=hit_me_2, bg='#f64141')
 b2.place(x=270, y=100)
-thread.start_new_thread(log_fans, ())
+thread.start_new_thread(log_fans, (uid_test,))  # TODO:Change this value after Finish input part
 window.mainloop()

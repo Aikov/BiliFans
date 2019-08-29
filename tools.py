@@ -16,7 +16,7 @@ def log_error(info):
 def get_fans(uid) -> tuple:
     now_time = time.asctime(time.localtime(time.time()))
     try:
-        url = 'https://api.bilibili.com/x/relation/stat'
+        url = 'https://api.bilibili.com/x/relation/stat'  # 刚才写url居然忘写http://了
         params = {'vmid': uid}
         body = requests.get(url=url, params=params)
         body = body.json()

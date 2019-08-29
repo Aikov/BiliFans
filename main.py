@@ -1,29 +1,7 @@
 import _thread as thread
-import csv
-import time
 import tkinter as tk
 
-import requests
-
-error_log = open('Error.csv', 'a', newline='')
-eWriter = csv.writer(error_log)
-
-
-def log_error(info):
-    eWriter.writerow(info)
-
-
-def get_fans(uid) -> tuple:
-    now_time = time.asctime(time.localtime(time.time()))
-    try:
-        url = 'https://api.bilibili.com/x/relation/stat'
-        params = {'vmid': uid}
-        body = requests.get(url=url, params=params)
-        body = body.json()
-        return now_time, body["data"]["follower"], True
-    except Exception as e:
-        return now_time, e, False
-
+from tools import *
 
 window = tk.Tk()
 window.title('AIChannel Fans')
@@ -48,27 +26,6 @@ def hit_me_1():
         data = [a[0], a[1]]
         log_error(data)
         string.set('Error,Check the log file.')
-
-
-file = open('data.csv', 'a', newline='')
-writer = csv.writer(file)
-
-
-def log_fans():
-    count = 0
-    while True:
-        a = get_fans(1473830)
-        if a[2]:
-            write_data = [a[0], a[1]]
-            writer.writerow(write_data)
-            time.sleep(5)
-            count = count + 1
-            if count % 10 == 0:
-                write_text = ['-------Fuck you Active 8-------']
-                writer.writerow(write_text)
-        else:
-            write_data = [a[0], a[1]]
-            log_error(write_data)
 
 
 def hit_me_2():

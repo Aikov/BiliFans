@@ -22,24 +22,25 @@ def get_fans(uid) -> tuple:
         body = body.json()
         return now_time, body["data"]["follower"], True
     except Exception as e:
+        write_data = [now_time, 'get_fans', e]  # 错误最好还是就地处理
+        log_error(write_data)
         return now_time, e, False
 
 
 def log_fans(uid):
-    count = 0
+    # count = 0
     while True:
         a = get_fans(uid)
         if a[2]:
             write_data = [a[0], a[1]]
             writer.writerow(write_data)
             time.sleep(5)
-            count = count + 1
-            if count % 10 == 0:
-                write_text = ['-------Fuck you Active 8-------']
-                writer.writerow(write_text)
+            # count = count + 1
+            # if count % 10 == 0:
+            #    write_text = ['-------Fuck you Active 8-------']
+            #    writer.writerow(write_text)
         else:
-            write_data = [a[0], 'get_fans', a[1]]
-            log_error(write_data)
+            return
 
 
 def get_name(uid):

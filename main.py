@@ -24,8 +24,6 @@ def hit_me_1():
         string.set(a[1])
 
     else:
-        data = [a[0], a[1]]
-        log_error(data)
         string.set('Error,Check the log file.')
 
 
@@ -41,3 +39,5 @@ b2 = tk.Button(window, text='Exit', font=('Arial', 18), width=10, height=1, comm
 b2.place(x=270, y=100)
 thread.start_new_thread(log_fans, (uid_test,))  # TODO:Change this value after Finish input part
 window.mainloop()
+# TODO：一个视窗，用于让用户输入UID
+# TODO：粉丝数量异常变化的分析和记录

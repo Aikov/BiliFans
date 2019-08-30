@@ -27,12 +27,12 @@ def get_fans(uid) -> tuple:
         return now_time, e, False
 
 
-def log_fans(uid):
+def log_fans(uid, name):
     # count = 0
     while True:
         a = get_fans(uid)
         if a[2]:
-            write_data = [a[0], a[1]]
+            write_data = [name, a[0], a[1]]
             writer.writerow(write_data)
             time.sleep(5)
             # count = count + 1

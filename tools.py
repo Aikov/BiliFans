@@ -5,7 +5,7 @@ import requests
 
 file = open('data.csv', 'a', newline='')
 writer = csv.writer(file)
-error_log = open('Error.csv', 'a', newline='')
+error_log = open('Error.csv', 'a', newline='')  # close() of these to File are in main.py
 eWriter = csv.writer(error_log)
 
 
@@ -27,18 +27,13 @@ def get_fans(uid) -> tuple:
         return now_time, e, False
 
 
-def log_fans(uid, name):
-    # count = 0
+def log_fans(uid, name):  # After input window finish I add name param to this func
     while True:
         a = get_fans(uid)
         if a[2]:
-            write_data = [name, a[0], a[1]]
+            write_data = [name, a[0], a[1]]  # Also different format of data row
             writer.writerow(write_data)
             time.sleep(5)
-            # count = count + 1
-            # if count % 10 == 0:
-            #    write_text = ['-------Fuck you Active 8-------']
-            #    writer.writerow(write_text)
         else:
             return
 

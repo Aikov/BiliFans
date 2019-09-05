@@ -5,7 +5,7 @@ import requests
 
 file = open('data.csv', 'a', newline='')
 writer = csv.writer(file)
-error_log = open('Error.csv', 'a', newline='')  # close() of these to File are in main.py
+error_log = open('Error.csv', 'a', newline='')  # close() of these 2 File are in main.py
 eWriter = csv.writer(error_log)
 
 

@@ -44,8 +44,6 @@ def get_name(uid):
     try:
         body = requests.get(url=url, params=param)
         body = body.json()
-        print('test')
-        print(body['data']['name'])
         return body['data']['name']
     except Exception as e:
         error_info = [time.asctime(time.localtime(time.time())), 'get_name', e]

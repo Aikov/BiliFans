@@ -50,7 +50,7 @@ def hit_me_1():
     a = get_fans(uid)
     if a[2]:
         string.set(a[1])
-
+        window.after(1000, hit_me_1, )
     else:
         string.set('Error,Check the log file.')
 
